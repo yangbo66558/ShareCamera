@@ -1,0 +1,23 @@
+glob:*bin/*
+glob:*gen/*
+glob:*.apk
+glob:proguard/*
+glob:out/*
+glob:.DS_Store
+glob:proguard_logs/*
+glob:*.iml
+syntax: glob
+.idea
+.idea/
+local.properties
+.gradle
+.gradle/
+/build
+gradlew
+gradlew.bat
+app/build/
+ShareCamera.iml
+app.iml
+bin/
+gen/
+
