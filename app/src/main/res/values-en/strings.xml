@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">ShareCamera</string>
-    <string name="btn_func_capture">拍照</string>
+    <string name="btn_func_capture">Capture</string>
 </resources>
