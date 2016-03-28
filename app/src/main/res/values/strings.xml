@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ShareCamera</string>
     <string name="btn_func_capture">拍照</string>
+    <string name="no_camera">"该设备木有摄像头..."</string>
+    <string name="save_failure">照片保存失败</string>
+    <string name="open_camera_fail">"摄像头打开失败"</string>
 </resources>

@@ -7,14 +7,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <ImageView
-        android:id="@+id/imgForAni"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:scaleType="fitXY"
-        android:visibility="invisible" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,15 +37,7 @@
             android:layout_marginTop="70dp"
             android:background="@drawable/light_off" />
 
-        <View
-            android:id="@+id/posPreview"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:visibility="invisible" />
-
-        <cn.ishuidi.shuidi.ui.capture.CaptureFocuseView
+        <com.tiger.jump.high.sharecamera.ui.CaptureFocuseView
             android:id="@+id/viewFocus"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -66,30 +50,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="right"
         android:background="#80000000">
-
-        <FrameLayout
-            android:id="@+id/bnToBrowser"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="bottom|center"
-            android:layout_marginBottom="10dp">
-
-            <ImageView
-                android:id="@+id/imgPreview"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center" />
-
-            <TextView
-                android:id="@+id/textMediaCount"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/bg_capture_count"
-                android:gravity="center"
-                android:rotation="270"
-                android:textColor="@android:color/white"
-                android:textSize="12sp" />
-        </FrameLayout>
 
         <View
             android:id="@+id/bnCapture"
