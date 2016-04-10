@@ -3,7 +3,9 @@ package com.tiger.jump.high.sharecamera.takevideo;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.ThumbnailUtils;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.WindowManager;
 
 import com.tiger.jump.high.sharecamera.R;
@@ -13,16 +15,17 @@ import com.tiger.jump.high.sharecamera.ui.VideoLayout;
 /**
  * Created by yb on 16-4-10.
  */
-public class CustomVideoActivity extends Activity {
+public class CustomVideoActivity extends Activity implements VideoLayout.VideoLayoutButtonClickListener, VideoRecorderController.VideoRecorderControllerListener {
 
     private static final String TAG = CustomVideoActivity.class.getCanonicalName() + ":";
     private static final String SAVED_IS_RECORDED = "com.tiger.jump.high.saved.is.recorded";
 
     private UserConfiguration mUserConfiguration;//用户配置参数
-    private int timeCountDown = 0;//倒计时
+    private int mTimeCountDown = 0;//倒计时
     private boolean mIsVideoRecorded = false;//是否在拍摄过程中的记录
     private VideoFileBean mVideoFile = null;
-    private VideoLayout video_layout;
+    private VideoLayout mVideoLayout;
+    private VideoRecorderController mVideoRecorderController;
 
 
     public static void open(Context mContext) {
@@ -37,18 +40,17 @@ public class CustomVideoActivity extends Activity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_custom_video);
         initializeUserConfiguration(savedInstanceState);
-        video_layout = (VideoLayout) findViewById(R.id.video_layout);
-        if (video_layout == null) return;
-
-
+        mVideoLayout = (VideoLayout) findViewById(R.id.video_layout);
+        if (mVideoLayout == null) return;
+        init();
     }
 
     private void initializeUserConfiguration(Bundle savedInstanceState) {
         mUserConfiguration = generateUserConfiguration();
-        timeCountDown = mUserConfiguration.getMaxCaptureDuration() / 1000;
+        mTimeCountDown = mUserConfiguration.getMaxCaptureDuration() / 1000;
         mIsVideoRecorded = generateVideoIsRecorded(savedInstanceState);
         mVideoFile = generateOutputFile(savedInstanceState);
-        Lg.d("mUserConfiguration : " + mUserConfiguration + " , timeCountDown : " + timeCountDown + " , mIsVideoRecorded : " + mIsVideoRecorded + " , mVideoFile : " + mVideoFile);
+        Lg.d("mUserConfiguration : " + mUserConfiguration + " , mTimeCountDown : " + mTimeCountDown + " , mIsVideoRecorded : " + mIsVideoRecorded + " , mVideoFile : " + mVideoFile);
     }
 
     protected VideoFileBean generateOutputFile(Bundle savedInstanceState) {
@@ -74,4 +76,57 @@ public class CustomVideoActivity extends Activity {
         }
         return userConfiguration;
     }
+
+    private void init() {
+        mVideoRecorderController = new VideoRecorderController(
+                this, mUserConfiguration, mVideoFile, new CameraWrapper(), mVideoLayout.getPreviewSurfaceHolder());
+        mVideoLayout.setOnVideoLayoutBtnClickListener(this);
+        if (mIsVideoRecorded) {
+            mVideoLayout.updateUIRecordingFinished(
+                    ThumbnailUtils.createVideoThumbnail(mVideoFile.getFullPath(), MediaStore.Video.Thumbnails.FULL_SCREEN_KIND));
+        } else {
+            mVideoLayout.updateUIRecordPrepare();
+        }
+    }
+
+    //==========
+    @Override
+    public void onRecordButtonClicked() {
+
+    }
+
+    @Override
+    public void onAcceptButtonClicked() {
+
+    }
+
+    @Override
+    public void onCancelButtonClicked() {
+
+    }
+    //==========
+
+    @Override
+    public void onRecordingStopped(String message) {
+
+    }
+
+    @Override
+    public void onRecordingStarted() {
+
+    }
+
+    @Override
+    public void onRecordingSuccess() {
+
+    }
+
+    @Override
+    public void onRecordingFailed(String message) {
+
+    }
+
+    //==========
+
+
 }

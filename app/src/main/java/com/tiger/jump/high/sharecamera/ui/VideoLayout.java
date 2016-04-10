@@ -25,6 +25,10 @@ public class VideoLayout extends FrameLayout implements View.OnClickListener {
     private ImageView mThumbnailView;
     private TextView mBtnRecord;
 
+    public static final int MODE_BEFORE = 0;
+    public static final int MODE_RECORDING = 1;
+    public static final int MODE_STOP = 2;
+
     private VideoLayoutButtonClickListener btnClickListener;
 
     public interface VideoLayoutButtonClickListener {
@@ -62,14 +66,6 @@ public class VideoLayout extends FrameLayout implements View.OnClickListener {
         mBtnCancel.setOnClickListener(this);
     }
 
-    public void setRecordingButtonInterface(VideoLayoutButtonClickListener mBtnInterface) {
-        this.btnClickListener = mBtnInterface;
-    }
-
-    public SurfaceHolder getPreviewSurfaceHolder() {
-        return mSurfaceView.getHolder();
-    }
-
     public void updateUIRecordPrepare() {
         mBtnRecord.setSelected(false);
         mBtnRecord.setVisibility(View.VISIBLE);
@@ -103,9 +99,13 @@ public class VideoLayout extends FrameLayout implements View.OnClickListener {
         }
     }
 
-    public static final int MODE_BEFORE = 0;
-    public static final int MODE_RECORDING = 1;
-    public static final int MODE_STOP = 2;
+    public SurfaceHolder getPreviewSurfaceHolder() {
+        return mSurfaceView.getHolder();
+    }
+
+    public void setOnVideoLayoutBtnClickListener(VideoLayoutButtonClickListener mBtnInterface) {
+        this.btnClickListener = mBtnInterface;
+    }
 
     public void updateUITimeCountDown(int mode) {
         updateUITimeCountDown(mode, 0);
