@@ -1,10 +1,11 @@
-package com.tiger.jump.high.sharecamera;
+package com.tiger.jump.high.sharecamera.takepic;
 
 import android.content.Context;
 import android.hardware.Camera;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.tiger.jump.high.sharecamera.IMedia;
 import com.tiger.jump.high.sharecamera.tools.Lg;
 
 import java.util.List;

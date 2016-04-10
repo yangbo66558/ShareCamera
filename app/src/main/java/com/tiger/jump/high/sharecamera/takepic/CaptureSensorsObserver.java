@@ -1,4 +1,4 @@
-package com.tiger.jump.high.sharecamera;
+package com.tiger.jump.high.sharecamera.takepic;
 
 import android.content.Context;
 import android.hardware.Sensor;

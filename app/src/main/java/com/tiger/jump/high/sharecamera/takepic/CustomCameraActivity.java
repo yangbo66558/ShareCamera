@@ -1,4 +1,4 @@
-package com.tiger.jump.high.sharecamera;
+package com.tiger.jump.high.sharecamera.takepic;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.tiger.jump.high.sharecamera.IMedia;
+import com.tiger.jump.high.sharecamera.MyApp;
+import com.tiger.jump.high.sharecamera.R;
 import com.tiger.jump.high.sharecamera.tools.Lg;
 import com.tiger.jump.high.sharecamera.tools.Utils;
 
