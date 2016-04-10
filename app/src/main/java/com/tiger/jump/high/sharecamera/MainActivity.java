@@ -6,10 +6,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.tiger.jump.high.sharecamera.takepic.CustomCameraActivity;
+import com.tiger.jump.high.sharecamera.takevideo.CustomVideoActivity;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
 
     private Button btnCapture;
+    private Button btn_video;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +23,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private void setView() {
         btnCapture.setOnClickListener(this);
+        btn_video.setOnClickListener(this);
     }
 
     private void iniView() {
         btnCapture = (Button) findViewById(R.id.btn_capture);
+        btn_video = (Button) findViewById(R.id.btn_video);
     }
 
 
@@ -33,6 +37,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.btn_capture:
                 CustomCameraActivity.open(this);
+                break;
+            case R.id.btn_video:
+                CustomVideoActivity.open(this);
                 break;
             default:
                 break;

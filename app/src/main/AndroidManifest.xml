@@ -36,6 +36,11 @@
             android:screenOrientation="landscape"
             android:theme="@style/defaultActivityStyle" />
 
+        <activity
+            android:name=".takevideo.CustomVideoActivity"
+            android:screenOrientation="sensor"
+            android:theme="@style/defaultActivityStyle" />
+
     </application>
 
 </manifest>

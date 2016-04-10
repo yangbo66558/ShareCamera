@@ -10,4 +10,13 @@
         android:layout_centerInParent="true"
         android:text="@string/btn_func_capture" />
 
+    <Button
+        android:id="@+id/btn_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_capture"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/btn_func_capture" />
+
 </RelativeLayout>
