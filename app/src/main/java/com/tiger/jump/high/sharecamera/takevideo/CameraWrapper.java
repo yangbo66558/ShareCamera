@@ -2,6 +2,7 @@ package com.tiger.jump.high.sharecamera.takevideo;
 
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
+import android.os.Build;
 import android.view.SurfaceHolder;
 
 import com.tiger.jump.high.sharecamera.tools.Lg;
@@ -112,6 +113,47 @@ public class CameraWrapper {
             }
         }
         return optimalSize;
+    }
+
+    //=====================
+
+    public void prepareCameraForRecording() throws PrepareCameraException {
+        try {
+            mParameters = mCamera.getParameters();
+            mCamera.unlock();
+        } catch (final RuntimeException e) {
+            e.printStackTrace();
+            throw new PrepareCameraException();
+        }
+    }
+
+    public Camera getCamera() {
+        return mCamera;
+    }
+
+    public RecordingSize getSupportedRecordingSize(int width, int height) {
+        Camera.Size recordingSize = getOptimalSize(getSupportedVideoSizes(), width, height);
+        if (recordingSize == null) {
+            Lg.d("Failed to find supported recording size - falling back to requested: " + width + "x" + height);
+            return new RecordingSize(width, height);
+        }
+        Lg.d("Recording size: " + recordingSize.width + "x" + recordingSize.height);
+        return new RecordingSize(recordingSize.width, recordingSize.height);
+    }
+
+    private List<Camera.Size> getSupportedVideoSizes() {
+        Camera.Parameters params = mParameters;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            return params.getSupportedVideoSizes();
+        } else {
+            Lg.d("Using supportedPreviewSizes iso supportedVideoSizes due to API restriction");
+            return params.getSupportedPreviewSizes();
+        }
+    }
+
+    public void releaseCamera() {
+        if (getCamera() == null) return;
+        mCamera.release();
     }
 
 }

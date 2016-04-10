@@ -88,4 +88,18 @@ public class CameraSurfacePreview implements SurfaceHolder.Callback {
                 ", mPreviewRunning=" + mPreviewRunning +
                 '}';
     }
+
+    //=======
+
+    public void releasePreviewResources() {
+        if (mPreviewRunning) {
+            try {
+                mCameraWrapper.stopPreview();
+                mPreviewRunning = false;
+            } catch (final Exception e) {
+                e.printStackTrace();
+                Lg.d("Failed to clean up preview resources");
+            }
+        }
+    }
 }
